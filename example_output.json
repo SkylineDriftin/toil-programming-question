@@ -1,0 +1,7 @@
+{
+    "pipeline_name": "Trans-Polar Pipeline",
+    "between": ["Gordon", "Gurmant"],
+    "total_consumption_before": 2000,
+    "total_consumption_after": 1000
+}
+
