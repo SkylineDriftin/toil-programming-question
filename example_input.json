@@ -1,0 +1,13 @@
+{
+    "facilities": [
+        {"name": "Gordon", "max_consumption": 1000},
+        {"name": "Gurmant", "max_production": 2500},
+        {"name": "Port Radium", "max_consumption": 1000, "max_production": 33},
+        {"name": "Cambridge Bay", "max_consumption": 500},
+        {"name": "Beaufort Seastead"}
+    ], "pipelines": [
+        {"name": "Trans-Polar Pipeline", "facilities": ["Port Radium", "Gurmant", "Gordon"], "capacity": 1000},
+        {"name": "Cambridge Pipeline", "facilities": ["Cambridge Bay", "Beaufort Seastead", "Gordon"], "capacity": 500}
+    ]
+}
+
