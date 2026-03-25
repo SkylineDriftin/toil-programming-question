@@ -1,0 +1,58 @@
+Toil Programming Test 2025-2026 v2
+Hello! Welcome to the Toil project programming test!
+
+This test is designed to assess your ability to think critically about a problem, develop and implement technical requirements, and account for your decision-making process. It is also intended to evaluate what it would be like to work with you as a member of the Toil development team.
+
+Please solve the following problem using whatever tools, programming languages, and libraries you deem appropriate. Note that in real development, code is more often a liability than an asset; making appropriate use of library code, which someone else is responsible for maintaining, will make your solution better. When using libraries, make sure to provide the required files (package.json, requirements.txt, etc.) to install them.
+
+Please provide your code and answers in the form of a Git repository bundle, including commit history, which you can generate for the current commit with:
+
+git bundle create YourNameHere_toil_test.bundle HEAD
+
+Make sure that your project includes a README.md file documenting how you designed it, and how to use it.
+
+It is recommended to break the project into several steps and commit each one, rather than making one commit at the end with the completed project. Imagine that you would be working with other developers who need to understand how the implementation grew over time. Make sure to commit the final version! The bundle will not include uncommitted files!
+
+If you use code licensed from third parties, make it clear what part of your submission is licensed code and how that code was selected. If you use code generation tools of any kind, AI-based or otherwise, you will still be expected to be able to explain the decision-making behind any line of code when we interview you, in the same way as if you had typed it by hand. It is also recommended to include any relevant AI conversation logs in a logs/ directory in your repository, so your ability to articulate problems to the tool can be evaluated. Do not simply drag and drop this document onto your favorite AI and expect good results. You must provide code and comments that, when read, give insight into your own thinking processes, not those of a machine that we on the Toil project can also rent for $20 a month.
+
+
+The Problem
+You are a member of the cyber division of the feared climate change armed resistance group, the Arctic Avengers. You are planning to disrupt the operation of a critical fossil fuel distribution network spanning the Arctic Ocean, by demolishing part of a pipeline using dynamite. Though no one will be injured in the attack, or really needs the fuel, and the fuel is more harmful to the environment if used than if spilled, the company that owns the network, Universal Extraction Inc., stands to lose a lot of potential profit if their output is reduced, and the stock market may suffer.
+
+Your goal is to plan your attack to reduce the company’s profit by as much as possible. You will receive a JSON file, illegally obtained through an Elite Crew hacktivist cyberattack on Universal Extraction, describing the structure of the network. It will consist of a single JSON object with “facilities” and “pipelines” keys. The “facilities” array will contain an array of facility objects, each of which has a unique “name”, and can have “max_production” and “max_consumption” numbers, measured in liters of fuel per day. The “pipelines” array will contain pipeline objects, each of which has a unique “name”, a “facilities” array with the names of facilities in the order they are connected along the pipeline’s route (which never loops), and a “capacity” number. The capacity of a pipeline is the maximum volume of fuel per day, in liters, that can pass between adjacent facilities along it.
+
+Write a command-line tool, attack_planner, that takes two positional command line arguments: the input file path and the output file path. It should take in an illegally obtained JSON file from the cyberattack as described above, and identify where to attack in order to most reduce the total consumption rate of fuel that the network is able to achieve. The output file should contain a JSON object with “pipeline_name”, “between” (containing an array of two facility names in lexicographic order defining the section to attack), “total_consumption_before”, and “total_consumption_after” (both in liters per day). You should expect that, after your attack, Universal Extraction will respond by re-routing fuel between its facilities through the remaining pipeline sections.
+
+Please note that neither the Toil developers, nor the UCSC Computational Genomics Lab, nor the University of California, can endorse or recommend committing crimes.
+
+
+Example Command
+
+./attack_planner input.json output.json
+
+Example Input
+
+{
+    "facilities": [
+        {"name": "Gordon", "max_consumption": 1000},
+        {"name": "Gurmant", "max_production": 2500},
+        {"name": "Port Radium", "max_consumption": 1000, "max_production": 33},
+        {"name": "Cambridge Bay", "max_consumption": 500},
+        {"name": "Beaufort Seastead"}
+    ], "pipelines": [
+        {"name": "Trans-Polar Pipeline", "facilities": ["Port Radium", "Gurmant", "Gordon"], "capacity": 1000},
+        {"name": "Cambridge Pipeline", "facilities": ["Cambridge Bay", "Beaufort Seastead", "Gordon"], "capacity": 500}
+    ]
+}
+
+
+Example Output
+
+{
+    "pipeline_name": "Trans-Polar Pipeline",
+    "between": ["Gordon", "Gurmant"],
+    "total_consumption_before": 2000,
+    "total_consumption_after": 1000
+}
+
+You are encouraged to create your own test cases, including exceptional ones. Your program will be tested after submission on inputs that do things not shown here, including fairly large inputs.
