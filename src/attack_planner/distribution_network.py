@@ -14,12 +14,12 @@ class Facility:
             max_consumption (float): The maximum consumption capacity of the facility.
             max_production (float): The production capacity of the facility.
 
-        pipelines is a set of facilities that are connected to this facility via pipelines.
+        pipes is a set of pipe segments connected to the facility in which the facility is the source, which can be used to determine the flow of resources through the network.
         '''
         self.name = name
         self.max_consumption = max_consumption
         self.max_production = max_production 
-        self.pipelines = set() 
+        self.pipes = set() 
   
     def __repr__(self):
         return f"Facility(name={self.name}, max_consumption={self.max_consumption}, max_production={self.max_production})"
@@ -28,19 +28,21 @@ class Facility:
         return f"Facility(name={self.name}, max_consumption={self.max_consumption}, max_production={self.max_production})"
 
 class Pipeline:
-    '''
-    Represents a directional pipeline connecting two facilities in the distribution network.
-    '''
-    def __init__(self, name : str, source : Facility, destination : Facility):
+    def __init__(self, name:str, facilities : list, capacity : float):
         '''
         Args:
-            source (Facility): The source facility of the pipeline.
-            destination (Facility): The destination facility of the pipeline.
+            name (str): The name of the pipeline.
+            facilities (list): A list of facilities that the pipeline connects.
+            capacity (float): The maximum flow capacity of the pipeline.
         '''
-        self.name = name 
-        self.source = source
-        self.destination = destination
-
+        self.name = name
+        self.facilities = facilities
+        self.capacity = capacity
+    
+    def __repr__(self):
+        return f"Pipeline(name={self.name}, facilities={[facility.name for facility in self.facilities]}, capacity={self.capacity})"
+    def __str__(self):
+        return f"Pipeline(name={self.name}, facilities={[facility.name for facility in self.facilities]}, capacity={self.capacity})"
 
 
 class DistributionNetwork:
@@ -68,12 +70,13 @@ class DistributionNetwork:
         #iterate through pipeline data in json, create Pipeline object, and add to distribution network
         for pipeline_data in json_data['pipelines']:
             name = pipeline_data['name']
-            source_name = pipeline_data['source']
-            destination_name = pipeline_data['destination']
-            source = network.facilities[source_name]
-            destination = network.facilities[destination_name]
-            pipeline = Pipeline(name, source, destination)
+            facility_names = pipeline_data['facilities']
+            facilities = [network.facilities[facility_name] for facility_name in facility_names]
+            capacity = pipeline_data['capacity']
+            pipeline = Pipeline(name, facilities, capacity)
             network.add_pipeline(pipeline)
+
+
         
         
         return network
@@ -88,16 +91,4 @@ class DistributionNetwork:
     
     
     def add_pipeline(self, pipeline : Pipeline):
-        '''
-        Adds a pipeline to the distribution network and updates the connected facilities.
-        args:
-            pipeline (Pipeline): The pipeline to be added to the network.
-        '''
         self.pipelines[pipeline.name] = pipeline
-        pipeline.source.pipelines.add(pipeline)
-        pipeline.destination.pipelines.add(pipeline)
-    
-    def __repr__(self):
-        return f"DistributionNetwork(facilities={list(self.facilities.keys())})"
-    def __str__(self):
-        return f"DistributionNetwork(facilities={list(self.facilities.keys())})"
