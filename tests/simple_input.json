@@ -1,0 +1,10 @@
+{
+    "facilities": [
+        {"name": "source", "max_consumption": 500, "max_production" : 0},
+        {"name": "dest", "max_consumption": 500, "max_production" : 0},
+        {"name" : "middle", "max_consumption": 0, "max_production" : 500}
+    ], "pipelines": [
+        {"name": "simple Pipeline", "facilities": ["source", "dest"], "capacity": 3000}
+    ]
+}
+

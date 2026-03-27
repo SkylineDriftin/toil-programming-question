@@ -41,3 +41,27 @@ src layout moves code that is intended to be importable into a subdirector 'src'
  https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/
 
 
+-- attacking the problem itself
+
+This problem seems to be an optimization problem in which we need to minimize the total possible consumption by removing one edge from the graph. 
+
+The basic solution seems to be  
+- set up directed graph
+- find initial total consumption
+- iterate through every edge and remove one and calculate the result
+- store lowest edge result
+- output edge at filepath
+
+This is the brute-force method for minimizing with an efficiency of o(n**2). This may work for a small pipeline count, but for large n values (n>10000), it might take a bit longer. I don't think this is very time-sensitive, but I think it doesn't hurt to optimize it anyways. 
+
+
+
+I noticed each of the nodes is directionally connected to another node, and therefore can be represented by a directional graph. 
+
+
+-- setting up the initial graph
+
+the directional graph should be pretty simple to implement.
+Each node should have 3 attributes:
+max consumption, production, and connected nodes. 
+I used json parser and parsed through the nodes to obtain the file. 
