@@ -10,3 +10,6 @@ env/
 # Test artifacts
 out.json
 test_result.json
+
+#
+*.bundle
