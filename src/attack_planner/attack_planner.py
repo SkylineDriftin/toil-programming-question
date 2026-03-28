@@ -1,8 +1,9 @@
+#!/usr/bin/env python3
+
 import click
 import json
 import sys
-from distribution_network import DistributionNetwork
-
+from src.attack_planner.distribution_network import DistributionNetwork
 
 @click.command()
 @click.argument('input_filepath', type=click.Path(exists=True))
