@@ -1,2 +1,0 @@
-[console_scripts]
-attack_planner = src.attack_planner.attack_planner:cli
