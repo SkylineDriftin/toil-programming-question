@@ -1,0 +1,12 @@
+# Python metadata
+*.egg-info/
+__pycache__/
+*.pyc
+
+# Virtual environment
+.venv/
+env/
+
+# Test artifacts
+out.json
+test_result.json
