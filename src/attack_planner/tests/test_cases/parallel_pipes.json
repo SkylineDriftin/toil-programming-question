@@ -1,0 +1,34 @@
+{
+    "facilities": [
+        {
+            "name": "S",
+            "max_production": 100
+        },
+        {
+            "name": "T",
+            "max_consumption": 100
+        }
+    ],
+    "pipelines": [
+        {
+            "name": "Pipe_1",
+            "capacity": 30,
+            "facilities": [
+                "S",
+                "T"
+            ]
+        },
+        {
+            "name": "Pipe_2",
+            "capacity": 40,
+            "facilities": [
+                "S",
+                "T"
+            ]
+        }
+    ],
+    "expected_result": {
+        "total_consumption_before": 70.0,
+        "pipeline_name": "Pipe_2"
+    }
+}

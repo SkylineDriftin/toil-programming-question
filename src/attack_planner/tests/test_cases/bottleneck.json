@@ -1,0 +1,13 @@
+{
+    "facilities": [
+        {"name": "Alpha", "max_production": 100},
+        {"name": "Beta", "max_consumption": 100}
+    ],
+    "pipelines": [
+        {"name": "Small Pipe", "capacity": 10, "facilities": ["Alpha", "Beta"]}
+    ],
+    "expected_result": {
+        "total_consumption_before": 10.0,
+        "pipeline_name": "Small Pipe"
+    }
+  }

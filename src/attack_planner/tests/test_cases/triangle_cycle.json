@@ -1,0 +1,46 @@
+{
+    "facilities": [
+        {
+            "name": "A",
+            "max_production": 100
+        },
+        {
+            "name": "B",
+            "max_consumption": 0
+        },
+        {
+            "name": "C",
+            "max_consumption": 100
+        }
+    ],
+    "pipelines": [
+        {
+            "name": "Direct",
+            "capacity": 10,
+            "facilities": [
+                "A",
+                "C"
+            ]
+        },
+        {
+            "name": "Loop_Part1",
+            "capacity": 100,
+            "facilities": [
+                "A",
+                "B"
+            ]
+        },
+        {
+            "name": "Loop_Part2",
+            "capacity": 100,
+            "facilities": [
+                "B",
+                "C"
+            ]
+        }
+    ],
+    "expected_result": {
+        "total_consumption_before": 100.0,
+        "pipeline_name": "Loop_Part1"
+    }
+}

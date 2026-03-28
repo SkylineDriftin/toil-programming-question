@@ -1,0 +1,26 @@
+{
+    "facilities": [
+        {
+            "name": "Super_Source",
+            "max_production": 999999
+        },
+        {
+            "name": "Small_Sink",
+            "max_consumption": 10
+        }
+    ],
+    "pipelines": [
+        {
+            "name": "Huge_Pipe",
+            "capacity": 999999,
+            "facilities": [
+                "Super_Source",
+                "Small_Sink"
+            ]
+        }
+    ],
+    "expected_result": {
+        "total_consumption_before": 10.0,
+        "pipeline_name": "Huge_Pipe"
+    }
+}

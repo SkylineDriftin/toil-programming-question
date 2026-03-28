@@ -1,0 +1,46 @@
+{
+    "facilities": [
+        {
+            "name": "Supply",
+            "max_production": 1000
+        },
+        {
+            "name": "Hub",
+            "max_consumption": 0
+        },
+        {
+            "name": "Demand",
+            "max_consumption": 1000
+        }
+    ],
+    "pipelines": [
+        {
+            "name": "Short_Path",
+            "capacity": 400,
+            "facilities": [
+                "Supply",
+                "Demand"
+            ]
+        },
+        {
+            "name": "Long_Path_A",
+            "capacity": 300,
+            "facilities": [
+                "Supply",
+                "Hub"
+            ]
+        },
+        {
+            "name": "Long_Path_B",
+            "capacity": 300,
+            "facilities": [
+                "Hub",
+                "Demand"
+            ]
+        }
+    ],
+    "expected_result": {
+        "total_consumption_before": 700.0,
+        "pipeline_name": "Short_Path"
+    }
+}

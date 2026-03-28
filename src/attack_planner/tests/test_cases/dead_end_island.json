@@ -1,0 +1,17 @@
+{
+    "facilities": [
+        {
+            "name": "Isolated_Producer",
+            "max_production": 1000
+        },
+        {
+            "name": "Isolated_Consumer",
+            "max_consumption": 1000
+        }
+    ],
+    "pipelines": [],
+    "expected_result": {
+        "total_consumption_before": 0.0,
+        "pipeline_name": null
+    }
+}

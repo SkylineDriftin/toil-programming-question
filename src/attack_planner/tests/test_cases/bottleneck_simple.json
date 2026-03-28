@@ -1,0 +1,26 @@
+{
+    "facilities": [
+        {
+            "name": "Producer_A",
+            "max_production": 500
+        },
+        {
+            "name": "Consumer_B",
+            "max_consumption": 500
+        }
+    ],
+    "pipelines": [
+        {
+            "name": "Thin_Pipe",
+            "capacity": 50,
+            "facilities": [
+                "Producer_A",
+                "Consumer_B"
+            ]
+        }
+    ],
+    "expected_result": {
+        "total_consumption_before": 50.0,
+        "pipeline_name": "Thin_Pipe"
+    }
+}
